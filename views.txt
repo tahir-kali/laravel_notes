@@ -1,0 +1,32 @@
+Of course, it's not practical to return entire HTML documents strings directly from your routes and controllers. Thankfully, views provide a convenient way to place all of our HTML in separate files.
+
+
+
+Occasionally, you may need to share data with all views that are rendered by your application. You may do so using the View facade's share method. Typically, you should place calls to the share method within a service provider's boot method. You are free to add them to the App\Providers\AppServiceProvider class or generate a separate service provider to house them:
+
+
+
+<?php
+ 
+namespace App\Providers;
+ 
+use Illuminate\Support\Facades\View;
+ 
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        // ...
+    }
+ 
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        View::share('key', 'value');
+    }
+}
