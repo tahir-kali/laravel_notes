@@ -1,0 +1,34 @@
+Laravel's Illuminate\Http\Request class provides an object-oriented way to interact with the current HTTP request being handled by your application as well as retrieve the input, cookies, and files that were submitted with the request.
+
+When working with forms that contain array inputs, use "dot" notation to access the arrays:
+
+$name = $request->input('products.0.name');
+ 
+$names = $request->input('products.*.name');
+You may call the input method without any arguments in order to retrieve all of the input values as an associative array:
+
+$input = $request->input();
+
+
+In the context of Laravel, there are two ways to retrieve data from incoming HTTP requests: using the input method and accessing the query parameters. Let's explore the difference between them:
+
+input method: This method is used to retrieve input data from the request payload, which includes data from various sources such as query parameters, form data, and JSON payloads. The input method provides a unified way to access all the input data regardless of its source. It automatically detects the appropriate source and retrieves the input data accordingly. For example, if you send a POST request with form data, you can access it using $request->input('key'), where $request is an instance of the Illuminate\Http\Request class. The input method is convenient when you want to retrieve input data regardless of its source.
+
+query parameters: Query parameters are part of the URL and are typically used in GET requests to send additional data. For example, in the URL http://example.com/?key=value, the key=value portion represents the query parameters. In Laravel, you can access these query parameters using $request->query('key'). This method specifically retrieves the query parameter values from the URL. It is useful when you specifically want to access and work with query parameters.
+
+In summary, the main difference between input and query methods in Laravel is the source of the data they retrieve. The input method retrieves data from various sources (including query parameters), while the query method specifically retrieves query parameters from the URL.
+
+
+request->input()
+request->boolean()
+request->date()
+request->string()
+request->enum()
+request->only([])
+request->except()
+request->has()
+request->has([])
+request->whenHas('name',function(string $name){
+
+})
+request->filled('name')
