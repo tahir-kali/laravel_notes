@@ -1,0 +1,14 @@
+Laravel Route Constraints 
+
+Global Constraints
+If you would like a route parameter to always be constrained by a given regular expression, you may use the pattern method. You should define these patterns in the boot method of your App\Providers\RouteServiceProvider class:
+
+/**
+ * Define your route model bindings, pattern filters, etc.
+ */
+public function boot(): void
+{
+    Route::pattern('id', '[0-9]+');
+}
+
+Once the pattern has been defined, it is automatically applied to all routes using that parameter name:
