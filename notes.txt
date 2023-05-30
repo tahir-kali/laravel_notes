@@ -30,3 +30,18 @@ public function getRouteKeyName(): string
 {
     return 'slug';
 }
+
+Backed enumerations
+By default, Enumerated Cases have no scalar equivalent. They are simply singleton objects. However, there are ample cases where an Enumerated Case needs to be able to round-trip to a database or similar datastore, so having a built-in scalar (and thus trivially serializable) equivalent defined intrinsically is useful.
+
+To define a scalar equivalent for an Enumeration, the syntax is as follows:
+
+<?php
+enum Suit: string
+{
+    case Hearts = 'H';
+    case Diamonds = 'D';
+    case Clubs = 'C';
+    case Spades = 'S';
+}
+?>
