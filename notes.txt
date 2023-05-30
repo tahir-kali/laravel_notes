@@ -11,4 +11,22 @@ public function boot(): void
     Route::pattern('id', '[0-9]+');
 }
 
-Once the pattern has been defined, it is automatically applied to all routes using that parameter name:
+
+Customizing The Key
+Sometimes you may wish to resolve Eloquent models using a column other than id. To do so, you may specify the column in the route parameter definition:
+
+use App\Models\Post;
+ 
+Route::get('/posts/{post:slug}', function (Post $post) {
+    return $post;
+});
+
+If you would like model binding to always use a database column other than id when retrieving a given model class, you may override the getRouteKeyName method on the Eloquent model:
+
+/**
+ * Get the route key for the model.
+ */
+public function getRouteKeyName(): string
+{
+    return 'slug';
+}
